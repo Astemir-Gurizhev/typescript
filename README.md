@@ -110,14 +110,14 @@
     name: string; <br/>
     price: number; <br/>
 
-    constructor(name: string, price: number) { <br/>
-      this.name = name;<br/>
-      this.price = price; <br/>
+    constructor(name: string, price: number) { 
+      this.name = name;
+      this.price = price; 
     }
 
-    getInfo(): string { <br/>
-      return `${this.name} - ${this.price}` <br/>
-    }<br/>
+    getInfo(): string { 
+      return `${this.name} - ${this.price}` 
+    }
   } <br/>
 
   new Car('tesla', 10000).getInfo()<br/>
