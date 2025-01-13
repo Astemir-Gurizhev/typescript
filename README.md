@@ -1,114 +1,116 @@
   <b>Структура объектов</b><br/>
 
-    type TypeUser = { <br/>
-      name: string; <br/>
-      age: number; <br/>
-      address: string; <br/>
-    }; <br/>
+    type TypeUser = { 
+      name: string; 
+      age: number; 
+      address: string; 
+    }; 
 
-    let Astemir: TypeUser; <br/>
+    let Astemir: TypeUser; 
 
-    Astemir = { <br/>
-      name: "Astemir", <br/>
-      age: 23, <br/>
-      address: "KBR", <br/>
-    }; <br/>
+    Astemir = { 
+      name: "Astemir", 
+      age: 23, 
+      address: "KBR", 
+    }; 
 
   <b>Объединение объектов в один объект</b><br/>
 
-    type TypeHobbi = { <br/>
-      hobbi: string; <br/>
-    }; <br/>
-    type TypeJob = {<br/>
-      job: string;<br/>
-    };<br/>
-    const hobbi: TypeHobbi = {<br/>
-      hobbi: "sport",<br/>
-    };<br/>
-    const job: TypeJob = {<br/>
-      job: "programming",<br/>
-    };<br/>
+    type TypeHobbi = { 
+      hobbi: string; 
+    }; 
+    type TypeJob = {
+      job: string;
+    };
+    const hobbi: TypeHobbi = {
+      hobbi: "sport",
+    };
+    const job: TypeJob = {
+      job: "programming",
+    };
 
-    let Astik: TypeHobbi & TypeJob;<br/>
+    let Astik: TypeHobbi & TypeJob;
 
-    Astik = {<br/>
-      ...hobbi,<br/>
-      ...job,<br/>
-    };<br/>
+    Astik = {
+      ...hobbi,
+      ...job,
+    };
 
     ========================================================================
 
   <b>Типизация Массивов</b><br/>
 
-    let array: string[];<br/>
+    let array: string[];
 
-    array = ["one", "two"];<br/>
+    array = ["one", "two"];
 
-    <b>ReadonlyArray</b> <br/>
+  <b>ReadonlyArray</b>
 
-    const numbers: ReadonlyArray<number> = [1, 2, 3, 4, 5, 6];<br/>
+    const numbers: ReadonlyArray<number> = [1, 2, 3, 4, 5, 6];
 
-    numbers[0]  получим число<br/>
-    numbers[0] = '11'  меняться не будет ОШИБКА - ТОЛЬКО ДЛЯ ЧТЕНИЯ<br/>
+    numbers[0]  получим число
+    numbers[0] = '11'  меняться не будет ОШИБКА - ТОЛЬКО ДЛЯ ЧТЕНИЯ
 
 
   <b>Кортежи (точно знаем количество элементов)</b><br/>
 
-    type TypeArray = [number, string, null]<br/>
+    type TypeArray = [number, string, null]
 
-    const newArray: TypeArray = [23, 'Астемир', null] // обязательно должно быть 3 элемента нужной типизации<br/>
+    const newArray: TypeArray = [23, 'Астемир', null] // обязательно должно быть 3 элемента нужной типизации
 
     ========================================================================
 
   <b>Функции и их типы</b><br/>
 
-    type TypeChannelReturn = {<br/>
-      name: string;<br/>
-    }; <br/>
+    type TypeChannelReturn = {
+      name: string;
+    }; 
 
   <b>типизация function declaration, парамметры типизируем, после указываем тип возвращаемого</b><br/>
 
-    function getChannel(name: string) : TypeChannelReturn {<br/>
-      return { name };<br/>
-    }<br/>
+    function getChannel(name: string) : TypeChannelReturn {
+      return { name };
+    }
 
   <b>типизация стрелочной функции с выносом типизации (возможно только с function expression)</b><br/>
 
-    type TypeChannelFunction = (name:string) => TypeChannelReturn<br/>
+    type TypeChannelFunction = (name:string) => TypeChannelReturn
 
-    const getChannelName:TypeChannelFunction = (name) => {<br/>
-      return { name }<br/>
-    }<br/>
+    const getChannelName:TypeChannelFunction = (name) => {
+      return { name }
+    }
 
   <b>REST в аргументе</b><br/>
 
-    const getNumbers = (...numbers: number[])  => {<br/>
-      return numbers<br/>
-    }<br/>
+    const getNumbers = (...numbers: number[])  => {
+      return numbers
+    }
 
   <b>Функциональные перегрузки</b><br/>
 
-    <b>сигнатуры функции</b><br/>
-    function getCar(name:string):string<br/>
-    function getCar(name:string, price: number):string<br/>
+  <b>сигнатуры функции</b><br/>
 
-    <b>реализации функции</b><br/>
-    function getCar(name:string, price?: number):string {<br/>
-      return price ? `Название ${name}, Цена ${price} ` : `Название ${name}`<br/>
-    }<br/>
+    function getCar(name:string):string
+    function getCar(name:string, price: number):string
 
-    const car1 = getCar('bmw')<br/>
-    const car2 = getCar('bmw', 10000000)<br/>
-    const car3 = getCar('bmw', 10000000, 'm5') - 3го не существует, принимается 1 или 2 аргумента (так работает перегрузка)<br/>
+  <b>реализации функции</b><br/>
+
+    function getCar(name:string, price?: number):string {
+      return price ? `Название ${name}, Цена ${price} ` : `Название ${name}`
+    }
+
+    const car1 = getCar('bmw')
+    const car2 = getCar('bmw', 10000000)
+    const car3 = getCar('bmw', 10000000, 'm5') - 3го не существует, принимается 1 или 2 аргумента (так работает перегрузка)
 
 
     ========================================================================
 
   <b> Классы и типы </b> <br/>
 
-    class Car { <br/>
-      name: string; <br/>
-      price: number; <br/>
+    class Car { 
+      name: string; 
+      price: number;
 
       constructor(name: string, price: number) { 
         this.name = name;
@@ -118,6 +120,6 @@
       getInfo(): string { 
         return `${this.name} - ${this.price}` 
       }
-    } <br/>
+    } 
 
-    new Car('tesla', 10000).getInfo()<br/>
+    new Car('tesla', 10000).getInfo()
