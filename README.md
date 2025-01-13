@@ -103,3 +103,21 @@
 
 
   ========================================================================
+
+  <b> Классы и типы </b> <br/>
+
+  class Car { <br/>
+    name: string; <br/>
+    price: number; <br/>
+
+    constructor(name: string, price: number) { <br/>
+      this.name = name;<br/>
+      this.price = price; <br/>
+    }
+
+    getInfo(): string { <br/>
+      return `${this.name} - ${this.price}` <br/>
+    }<br/>
+  } <br/>
+
+  new Car('tesla', 10000).getInfo()<br/>
