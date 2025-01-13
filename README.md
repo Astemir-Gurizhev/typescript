@@ -1,7 +1,7 @@
   <b>Структура объектов</b><br/>
 
   type TypeUser = { <br/>
-    &emspname: string; <br/>
+    name: string; <br/>
     age: number; <br/>
     address: string; <br/>
   }; <br/>
