@@ -123,3 +123,102 @@
     } 
 
     new Car('tesla', 10000).getInfo()
+
+
+
+  <b>Классы и типы</b> <br/>
+
+    class Car {
+      name: string;
+      price: number;
+
+      constructor(name: string, price: number) {
+        this.name = name;
+        this.price = price;
+      }
+
+      getInfo(): string {
+        return `${this.name} - ${this.price}`;
+      }
+    }
+
+    new Car("tesla", 10000).getInfo();
+
+
+  <b>Интерфейсы. Типы или Интерфейсы?</b> <br/>
+
+  <b>Выбор субъективен или в зависимости что требуют в команде </b> <br/>
+
+    interface iUserAge {
+      age: number;
+    }
+
+    interface iUser extends iUserAge {
+      //здесь надо наследовать через extends
+      name: string;
+      email: string;
+    }
+
+    const userrr: iUser = {
+      email: "dsijfsjdi@sfdkgj.ru",
+      name: "Astemir",
+      age: 23,
+    };
+
+  <b>РАЗНИЦА </b> <br/>
+
+    type TypePerson = {
+      age: number;
+    };
+
+    type TypeUserr = {
+      name: string;
+      email: string;
+    } & TypePerson; // здесь можно добавлять типы &(И) |(ИЛИ)
+
+    const userr: TypeUserr = {
+      email: "dsijfsjdi@sfdkgj.ru",
+      name: "Astemir",
+      age: 23,
+    };
+
+  <b>через type можно описывать функции type TypeChannel = (name:string) => TypeChannelReturn, в отличии от интерфейсов </b> <br/>
+
+  <b>Когда надо описать что-то глобальное (интерфейс юзера, товара )</b> <br/>
+  <b>Когда надо описать что-то маленькое (функции, аргументы) использую типы , хотя пропсы описываю также через интерфейсы</b> <br/>
+
+  
+
+  <b>Enum и его типы (это как константы, но лучше)</b> <br/>
+
+    enum EnumRoles {
+      ADMIN,
+      GUEST,
+      USER,
+    }
+
+    const enum EnumColors { // использовать const лучше для оптимизации
+      black,
+      pink,
+      green,
+    }
+
+    interface iUserr {
+      role: EnumRoles;
+      color: EnumColors;
+    }
+
+    const user1: iUserr = {
+      // role: "ADMIN" НЕВОЗМОЖНО НАПИСАТЬ
+      role: EnumRoles.ADMIN, //Так работает и нельзя допустить случайную ошибку
+      color: EnumColors.black,
+    };
+
+  
+
+  <b>Утверждения (Assertions) </b> <br/>
+  <b>Например, когда тип переменной неизвестен, и мы задаем принудительно (есть 2 варианта) </b> <br/>
+
+    const inputElement = document.querySelector("input");
+    const value1 = (inputElement as HTMLInputElement).value;
+    const value2 = (<HTMLInputElement>inputElement).value;

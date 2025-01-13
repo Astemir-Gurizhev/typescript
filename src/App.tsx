@@ -114,11 +114,91 @@ function App() {
     }
 
     getInfo(): string {
-      return `${this.name} - ${this.price}`
+      return `${this.name} - ${this.price}`;
     }
   }
 
-  new Car('tesla', 10000).getInfo()
+  new Car("tesla", 10000).getInfo();
+
+  //===============================================================================
+
+  // Интерфейсы. Типы или Интерфейсы?
+
+  //Выбор субъективен или в зависимости что требуют в команде
+
+  interface iUserAge {
+    age: number;
+  }
+
+  interface iUser extends iUserAge {
+    //здесь надо наследовать через extends
+    name: string;
+    email: string;
+  }
+
+  const userrr: iUser = {
+    email: "dsijfsjdi@sfdkgj.ru",
+    name: "Astemir",
+    age: 23,
+  };
+
+  //РАЗНИЦА
+
+  type TypePerson = {
+    age: number;
+  };
+
+  type TypeUserr = {
+    name: string;
+    email: string;
+  } & TypePerson; // здесь можно добавлять типы &(И) |(ИЛИ)
+
+  const userr: TypeUserr = {
+    email: "dsijfsjdi@sfdkgj.ru",
+    name: "Astemir",
+    age: 23,
+  };
+
+  // через type можно описывать функции type TypeChannel = (name:string) => TypeChannelReturn, в отличии от интерфейсов
+
+  //Когда надо описать что-то глобальное (интерфейс юзера, товара )
+  //Когда надо описать что-то маленькое (функции, аргументы) использую типы , хотя пропсы описываю также через интерфейсы
+
+  //===============================================================================
+
+  // Enum и его типы (это как константы, но лучше)
+
+  enum EnumRoles {
+    ADMIN,
+    GUEST,
+    USER,
+  }
+
+  const enum EnumColors { // использовать const лучше для оптимизации
+    black,
+    pink,
+    green,
+  }
+
+  interface iUserr {
+    role: EnumRoles;
+    color: EnumColors;
+  }
+
+  const user1: iUserr = {
+    // role: "ADMIN" НЕВОЗМОЖНО НАПИСАТЬ
+    role: EnumRoles.ADMIN, //Так работает и нельзя допустить случайную ошибку
+    color: EnumColors.black,
+  };
+
+  //===============================================================================
+
+  // Утверждения (Assertions)
+  //Например, когда тип переменной неизвестен, и мы задаем принудительно (есть 2 варианта)
+
+  const inputElement = document.querySelector("input");
+  const value1 = (inputElement as HTMLInputElement).value;
+  // const value2 = (<HTMLInputElement>inputElement).value (2 вариант)
 
   //===============================================================================
   return <></>;
