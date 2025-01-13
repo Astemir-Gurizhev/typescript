@@ -46,7 +46,7 @@ function App() {
 
   array = ["one", "two"];
 
-  //ReadonlyArray 
+  //ReadonlyArray
 
   const numbers: ReadonlyArray<number> = [1, 2, 3, 4, 5, 6];
 
@@ -55,9 +55,52 @@ function App() {
 
   //Кортежи (точно знаем количество элементов)
 
-  type TypeArray = [number, string, null]
+  type TypeArray = [number, string, null];
 
-  const newArray: TypeArray = [23, 'Астемир', null] // обязательно должно быть 3 элемента нужной типизации
+  const newArray: TypeArray = [23, "Астемир", null]; // обязательно должно быть 3 элемента нужной типизации
+
+  //===============================================================================
+
+  //Функции и их типы
+
+  type TypeChannelReturn = {
+    name: string;
+  }; 
+
+  //типизация function declaration, парамметры типизируем, после указываем тип возвращаемого
+  function getChannel(name: string) : TypeChannelReturn {
+    return { name };
+  }
+
+  // типизация стрелочной функции с выносом типизации (возможно только с function expression)
+
+  type TypeChannelFunction = (name:string) => TypeChannelReturn
+
+  const getChannelName:TypeChannelFunction = (name) => {
+    return { name }
+  }
+
+  // REST в аргументе
+
+  const getNumbers = (...numbers: number[])  => {
+    return numbers
+  }
+
+  // Функциональные перегрузки
+
+  // сигнатуры функции
+  function getCar(name:string):string
+  function getCar(name:string, price: number):string
+
+  // реализации функции
+  function getCar(name:string, price?: number):string {
+    return price ? `Название ${name}, Цена ${price} ` : `Название ${name}`
+  }
+
+  const car1 = getCar('bmw')
+  const car2 = getCar('bmw', 10000000)
+  // const car3 = getCar('bmw', 10000000, 'm5') - 3го не существует, принимается 1 или 2 аргумента (так работает перегрузка)
+
 
   //===============================================================================
 
