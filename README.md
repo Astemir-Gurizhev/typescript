@@ -210,6 +210,7 @@
   <b>Generic  </b> <br/>
 
   <b>функции и дженерик</b> <br/>
+  
     function entity<T>(args: T):T {
       return args
     }
@@ -218,13 +219,16 @@
     //  entity<string>(3) Argument of type 'number' is not assignable to parameter of type 'string'.
 
   <b>стрелочная функция дженерик</b> <br/>
+
     const entity2 = <T>(args: T):T => {  
       return args
     }
 
 
   <b>интерфейс и дженерики</b> <br/>
-    interface iPair<K,V> { // в интерфейсе мы можем принимать дженерики, а в type - нет
+  в интерфейсе мы можем принимать дженерики, а в type - нет<br/>
+
+    interface iPair<K,V> { 
       key: K
       value: V
     }
@@ -249,6 +253,7 @@
 
 
   <b>Классы и дженерик</b> <br/>
+
     class Channel<T> {
       private name: T
 
