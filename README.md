@@ -209,8 +209,8 @@
 
   <b>Generic  </b> <br/>
 
-  <b>функции и дженерик</b> <br/>
-  
+  <b>Функции и дженерик</b> <br/>
+
     function entity<T>(args: T):T {
       return args
     }
@@ -218,14 +218,14 @@
     entity<string>('test')
     //  entity<string>(3) Argument of type 'number' is not assignable to parameter of type 'string'.
 
-  <b>стрелочная функция дженерик</b> <br/>
+  <b>Стрелочная функция дженерик</b> <br/>
 
     const entity2 = <T>(args: T):T => {  
       return args
     }
 
 
-  <b>интерфейс и дженерики</b> <br/>
+  <b>Интерфейс и дженерики</b> <br/>
   в интерфейсе мы можем принимать дженерики, а в type - нет<br/>
 
     interface iPair<K,V> { 
@@ -239,7 +239,7 @@
     }
 
   
-  <b>задать тип дженерика по умолчанию</b> <br/>
+  <b>Дженерик по умолчанию</b> <br/>
 
     type TypeLength = {
       length: number
