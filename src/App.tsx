@@ -199,7 +199,72 @@ function App() {
   const inputElement = document.querySelector("input");
   const value1 = (inputElement as HTMLInputElement).value;
   // const value2 = (<HTMLInputElement>inputElement).value (2 вариант)
+
+  //===============================================================================
+
+  // Generic 
+
+  // функции и дженерик
+  function entity<T>(args: T):T {
+    return args
+  }
+  entity<number>(1)
+  entity<string>('test')
+  //  entity<string>(3) Argument of type 'number' is not assignable to parameter of type 'string'.
+
+  // стрелочная функция дженерик
+  // const entity2 = <T>(args: T):T => {  
+  //   return args
+  // }
+
+
+  // интерфейс и дженерики
+  interface iPair<K,V> { // в интерфейсе мы можем принимать дженерики, а в type - нет
+    key: K
+    value: V
+  }
+
+  const pair1: iPair<string, number> = {
+    key: 'test',
+    value: 23
+  }
+
   
+  // задать тип дженерика по умолчанию
+
+  type TypeLength = {
+    length: number
+  }
+
+  function getNameLength<T extends TypeLength>(entity:T):number {
+    return entity.length
+  } 
+  getNameLength('wrersdsf')
+  getNameLength([0,1,2])
+
+
+  // Классы и дженерик
+  class Channel<T> {
+    private name: T
+
+    constructor(name:T) {
+      this.name = name
+    }
+
+    getName():T {
+      return this.name
+    }
+  }
+
+  new Channel<string>('test')
+  new Channel<number>(0.7)
+
+
+
+
+
+
+
   //===============================================================================
   return <></>;
 }
