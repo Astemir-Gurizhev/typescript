@@ -332,6 +332,7 @@
     type Any = Extract<'max' | 'andrey', 'andrey' | 'misha'> // Extract возвращает совпадение параметров (очень редко используется) - andrey
 
   <b>Exclude</b> <br/>
+  
     type Anyy = Exclude<'max' | 'andrey', 'andrey' | 'misha'> // Exclude исключает все, кроме первого параметра и возвращает его
   
   <b>NonNullable</b> <br/>
