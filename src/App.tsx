@@ -202,68 +202,133 @@ function App() {
 
   //===============================================================================
 
-  // Generic 
+  // Generic
 
   // функции и дженерик
-  function entity<T>(args: T):T {
-    return args
+  function entity<T>(args: T): T {
+    return args;
   }
-  entity<number>(1)
-  entity<string>('test')
+  entity<number>(1);
+  entity<string>("test");
   //  entity<string>(3) Argument of type 'number' is not assignable to parameter of type 'string'.
 
   // стрелочная функция дженерик
-  // const entity2 = <T>(args: T):T => {  
+  // const entity2 = <T>(args: T):T => {
   //   return args
   // }
 
-
   // интерфейс и дженерики
-  interface iPair<K,V> { // в интерфейсе мы можем принимать дженерики, а в type - нет
-    key: K
-    value: V
+  interface iPair<K, V> {
+    // в интерфейсе мы можем принимать дженерики, а в type - нет
+    key: K;
+    value: V;
   }
 
   const pair1: iPair<string, number> = {
-    key: 'test',
-    value: 23
-  }
+    key: "test",
+    value: 23,
+  };
 
-  
   // задать тип дженерика по умолчанию
 
   type TypeLength = {
-    length: number
+    length: number;
+  };
+
+  function getNameLength<T extends TypeLength>(entity: T): number {
+    return entity.length;
   }
-
-  function getNameLength<T extends TypeLength>(entity:T):number {
-    return entity.length
-  } 
-  getNameLength('wrersdsf')
-  getNameLength([0,1,2])
-
+  getNameLength("wrersdsf");
+  getNameLength([0, 1, 2]);
 
   // Классы и дженерик
   class Channel<T> {
-    private name: T
+    private name: T;
 
-    constructor(name:T) {
-      this.name = name
+    constructor(name: T) {
+      this.name = name;
     }
 
-    getName():T {
-      return this.name
+    getName(): T {
+      return this.name;
     }
   }
 
-  new Channel<string>('test')
-  new Channel<number>(0.7)
+  new Channel<string>("test");
+  new Channel<number>(0.7);
 
+  // Утилиты типов
 
+  interface ICar {
+    id: number;
+    name: string;
+    price: number;
+    yearBuilt: number;
+  }
 
+  // Omit
 
+  interface ICarCreate extends Omit<ICar, 'id'> {}  //наследовались от ICar и исключили ключ id с помощью Omit
 
+  // const car: ICarCreate = {
+    
+  // }
 
+  // Pick 
+
+  interface ICarId extends Pick<ICar, 'id'> {} //наследовались от ICar и оставили только ключ id с помощью Pick
+
+  // const car: ICarId = {
+    
+  // }
+  
+  // Partial
+  interface IOptionalCar extends Partial<ICar> {} //наследовались от ICar и сделали все ключи необязательными с помощью  Partial
+
+  // const car: IOptionalCar = {
+    
+  // }
+
+  // Required
+
+  interface iRequiredCar extends Required<ICar> {} // обратное свойство optional. делает все ключи обязательными (редко используется)
+
+  // Readonly
+
+  interface IReadonlyCar extends Readonly<ICar> {} //наследовались от ICar и сделали все ключи только доступными для чтения с помощью Readonly
+
+  // const car: IReadonlyCar = {
+    
+  // }
+
+  // Record
+
+  type TypeCarRecord = Record<"name" | "price", string | number> // name и прайс могут быть либо string либо number (часто используют)
+
+  // const car: TypeCarRecord = {
+    
+  // }
+
+  // ReturnType
+
+  type TypeGetName = () => number
+  type Return = ReturnType<TypeGetName> // с помощью ReturnType можем узнать, какой тип возвращает функция
+
+  // Extract
+
+  type Any = Extract<'max' | 'andrey', 'andrey' | 'misha'> // Extract возвращает совпадение параметров (очень редко используется) - andrey
+
+  // Exclude
+  type Anyy = Exclude<'max' | 'andrey', 'andrey' | 'misha'> // Exclude исключает все, кроме первого параметра и возвращает его
+  
+  // NonNullable
+
+  type NotNull = NonNullable<string | number | null | undefined> //NonNullable удаляет параметры null и undefined и возвращает все остальное
+  
+
+  
+
+  
 
   //===============================================================================
   return <></>;

@@ -268,3 +268,73 @@
 
     new Channel<string>('test')
     new Channel<number>(0.7)
+
+  <b>Утилиты типов</b> <br/>
+
+    interface ICar {
+      id: number;
+      name: string;
+      price: number;
+      yearBuilt: number;
+    }
+
+  <b>Omit</b> <br/>
+
+    interface ICarCreate extends Omit<ICar, 'id'> {}  //наследовались от ICar и исключили ключ id с помощью Omit
+
+    const car: ICarCreate = {
+      
+    }
+
+  <b>Pick </b> <br/>
+
+    interface ICarId extends Pick<ICar, 'id'> {} //наследовались от ICar и оставили только ключ id с помощью Pick
+
+    const car: ICarId = {
+      
+    }
+  
+  <b>Partial</b> <br/>
+
+    interface IOptionalCar extends Partial<ICar> {} //наследовались от ICar и сделали все ключи необязательными с помощью  Partial
+
+    const car: IOptionalCar = {
+      
+    }
+
+  <b>Required</b> <br/>
+
+    interface iRequiredCar extends Required<ICar> {} // обратное свойство optional. делает все ключи обязательными (редко используется)
+
+  <b>Readonly</b> <br/>
+
+    interface IReadonlyCar extends Readonly<ICar> {} //наследовались от ICar и сделали все ключи только доступными для чтения с помощью Readonly
+
+    const car: IReadonlyCar = {
+    
+    }
+
+  <b>Record</b> <br/>
+
+    type TypeCarRecord = Record<"name" | "price", string | number> // name и прайс могут быть либо string либо number (часто используют)
+
+    const car: TypeCarRecord = {
+      
+    }
+
+  <b>ReturnType</b> <br/>
+
+    type TypeGetName = () => number
+    type Return = ReturnType<TypeGetName> // с помощью ReturnType можем узнать, какой тип возвращает функция
+
+  <b>Extract</b> <br/>
+
+    type Any = Extract<'max' | 'andrey', 'andrey' | 'misha'> // Extract возвращает совпадение параметров (очень редко используется) - andrey
+
+  <b>Exclude</b> <br/>
+    type Anyy = Exclude<'max' | 'andrey', 'andrey' | 'misha'> // Exclude исключает все, кроме первого параметра и возвращает его
+  
+  <b>NonNullable</b> <br/>
+
+    type NotNull = NonNullable<string | number | null | undefined> //NonNullable удаляет параметры null и undefined и возвращает все остальное
+
