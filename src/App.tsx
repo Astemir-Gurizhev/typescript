@@ -219,7 +219,6 @@ function App() {
 
   // интерфейс и дженерики
   interface iPair<K, V> {
-    // в интерфейсе мы можем принимать дженерики, а в type - нет
     key: K;
     value: V;
   }
@@ -343,6 +342,27 @@ function App() {
   class Plane {
     constructor(id: number) {}
   }
+
+  //===============================================================================
+
+  // Расширенные типы
+
+  type TypeIsNumber<T> = T extends number ? 'yes' : 'no'
+
+  type Type1 = TypeIsNumber<number>
+  type Type2 = TypeIsNumber<string>
+
+  type TypeBrand = 'bmw' | 'mercedes' | 'porshe'
+  type TypePrice = '1111$' | '22222$' | '33333$'
+
+  type TypeCar = `${TypeBrand} ${TypePrice}`
+
+  const car11:TypeCar = 'bmw 1111$' //выводится сразу подсказка TypeBrand+TypePrice. Пример: bmw 1111$ // и мы не можем ввести другое или в иной последовательности
+  
+
+
+
+
 
   //===============================================================================
   return <></>;
