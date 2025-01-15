@@ -332,10 +332,27 @@
     type Any = Extract<'max' | 'andrey', 'andrey' | 'misha'> // Extract возвращает совпадение параметров (очень редко используется) - andrey
 
   <b>Exclude</b> <br/>
-  
+
     type Anyy = Exclude<'max' | 'andrey', 'andrey' | 'misha'> // Exclude исключает все, кроме первого параметра и возвращает его
   
   <b>NonNullable</b> <br/>
 
     type NotNull = NonNullable<string | number | null | undefined> //NonNullable удаляет параметры null и undefined и возвращает все остальное
 
+
+  <b>Декораторы</b> <br/>
+
+  <b>Декораторы добавляют какой-то дополнительный функционал вашим функциям, классам и т.д.</b> <br/>
+
+  <b>в tsconfig в "compilerOptions" обязательно нужно добавить "experimentalDecorators": true</b> <br/>
+
+
+    function LogClass(constructor: Function) {
+      console.log(constructor.name)
+    }
+
+    @LogClass
+
+    class Plane {
+      constructor(id: number) {}
+    }

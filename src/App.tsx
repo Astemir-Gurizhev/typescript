@@ -268,25 +268,25 @@ function App() {
 
   // Omit
 
-  interface ICarCreate extends Omit<ICar, 'id'> {}  //наследовались от ICar и исключили ключ id с помощью Omit
+  interface ICarCreate extends Omit<ICar, "id"> {} //наследовались от ICar и исключили ключ id с помощью Omit
 
   // const car: ICarCreate = {
-    
+
   // }
 
-  // Pick 
+  // Pick
 
-  interface ICarId extends Pick<ICar, 'id'> {} //наследовались от ICar и оставили только ключ id с помощью Pick
+  interface ICarId extends Pick<ICar, "id"> {} //наследовались от ICar и оставили только ключ id с помощью Pick
 
   // const car: ICarId = {
-    
+
   // }
-  
+
   // Partial
   interface IOptionalCar extends Partial<ICar> {} //наследовались от ICar и сделали все ключи необязательными с помощью  Partial
 
   // const car: IOptionalCar = {
-    
+
   // }
 
   // Required
@@ -298,37 +298,51 @@ function App() {
   interface IReadonlyCar extends Readonly<ICar> {} //наследовались от ICar и сделали все ключи только доступными для чтения с помощью Readonly
 
   // const car: IReadonlyCar = {
-    
+
   // }
 
   // Record
 
-  type TypeCarRecord = Record<"name" | "price", string | number> // name и прайс могут быть либо string либо number (часто используют)
+  type TypeCarRecord = Record<"name" | "price", string | number>; // name и прайс могут быть либо string либо number (часто используют)
 
   // const car: TypeCarRecord = {
-    
+
   // }
 
   // ReturnType
 
-  type TypeGetName = () => number
-  type Return = ReturnType<TypeGetName> // с помощью ReturnType можем узнать, какой тип возвращает функция
+  type TypeGetName = () => number;
+  type Return = ReturnType<TypeGetName>; // с помощью ReturnType можем узнать, какой тип возвращает функция
 
   // Extract
 
-  type Any = Extract<'max' | 'andrey', 'andrey' | 'misha'> // Extract возвращает совпадение параметров (очень редко используется) - andrey
+  type Any = Extract<"max" | "andrey", "andrey" | "misha">; // Extract возвращает совпадение параметров (очень редко используется) - andrey
 
   // Exclude
-  type Anyy = Exclude<'max' | 'andrey', 'andrey' | 'misha'> // Exclude исключает все, кроме первого параметра и возвращает его
-  
+  type Anyy = Exclude<"max" | "andrey", "andrey" | "misha">; // Exclude исключает все, кроме первого параметра и возвращает его
+
   // NonNullable
 
-  type NotNull = NonNullable<string | number | null | undefined> //NonNullable удаляет параметры null и undefined и возвращает все остальное
-  
+  type NotNull = NonNullable<string | number | null | undefined>; //NonNullable удаляет параметры null и undefined и возвращает все остальное
 
-  
+  //===============================================================================
 
-  
+  // Декораторы
+
+  // Декораторы добавляют какой-то дополнительный функционал вашим функциям, классам и т.д.
+
+  // в tsconfig в "compilerOptions" обязательно нужно добавить "experimentalDecorators": true
+
+
+  function LogClass(constructor: Function) {
+    console.log(constructor.name)
+  }
+
+  @LogClass
+
+  class Plane {
+    constructor(id: number) {}
+  }
 
   //===============================================================================
   return <></>;
